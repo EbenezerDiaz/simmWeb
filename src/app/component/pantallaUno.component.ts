@@ -27,7 +27,7 @@ export class PantallaUnoComponent implements OnInit {
     let height = 616;
 
     let projection = d3.geoMercator()
-    .scale(17400)
+    .scale(17200)
     .center([-99.272274, 19.5053678]);
 
     let svg = d3.select('p').append('svg')
@@ -45,8 +45,14 @@ export class PantallaUnoComponent implements OnInit {
           .data(topojson.feature(topology, topology.objects.municipalities).features)
           .enter()
           .append('path')
-          .attr('d', path);
+          .attr('d', path)
+          .attr("fill", "white")
+          .style("stroke", "#333")
+          .style("stroke-width", ".5px")
+          .attr("class", "muns");
 
       });
+
+      d3.select(self.frameElement).style("height", height + "px");
   }
 }
