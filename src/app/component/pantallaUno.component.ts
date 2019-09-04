@@ -27,8 +27,8 @@ export class PantallaUnoComponent implements OnInit {
     let height = 616;
 
     let projection = d3.geoMercator()
-    .scale(18500)
-    .center([-99.272274, 19.5653678]);
+    .scale(17400)
+    .center([-99.272274, 19.5053678]);
 
     let svg = d3.select('p').append('svg')
       .attr('width', width)
