@@ -31,7 +31,8 @@ export class PantallaUnoComponent implements OnInit {
     const path = d3.geoPath().projection(projection);
     const g = svg.append('g');
     g.attr('class', 'map');
-
+    var tooltip = d3.select('body').append('div')
+            .attr('class', 'hidden tooltip');
 
     d3.json('assets/edoMex.topojson')
       .then(function (topology: any) {
@@ -44,42 +45,17 @@ export class PantallaUnoComponent implements OnInit {
           .style('stroke', '#333')
           .style('stroke-width', '.5px')
           .attr('class', 'muns')
-          .on('mouseover.log', function (d: any) {
-              console.log(d.properties.mun_name);
-              svg.selectAll('.subunit-label')
-              .data(topojson.feature(topology, topology.objects.municipalities).features)
-              .enter().append('text')
-              .attr('class', function(d: any) { return 'subunit-label ' + d.properties.mun_code; })
-              .attr('transform', function(d: any) { return 'translate(' + path.centroid(d) + ')'; })
-              .attr('dy', '.35em')
-              .text(function(f: any) { return f.properties.mun_name; });
-             });
+          .on('mouseover', function (d: any) {
+            d3.select(this).style('fill', 'red')
+            .append('svg:title')
+            .attr('class', function(e: any) { return 'path ' + e.properties.mun_code; })
+            .attr('transform', function(f: any) { return 'translate(' + path.centroid(f) + ')'; })
+            .attr('dy', '.35em')
+            .text(function(h: any) { return h.properties.mun_name; });
 
+          }).on('mouseout', function() {
+            d3.selectAll('path').style('fill', 'white');
+          });
       });
-
-      // tslint:disable-next-line: comment-format
-      // Despliega el nombre de los estados.
-      /*
-      d3.json('assets/edoMex.topojson')
-      .then(function (topology) {
-        svg.selectAll('.place-label')
-          .data(topojson.feature(topology, topology.objects.municipalities).features)
-          .enter().append('text')
-          .attr('class', 'place-label')
-          .attr('transform', function(d) { console.log(d); return 'translate(' + projection(d.geometry.coordinates) + ')'; })
-          .attr('dy', '.35em')
-          .text(function(d) { return d.properties.mun_name; });
-
-      d3.json('assets/edoMex.topojson')
-        .then(function (topology: any) {
-          svg.selectAll('.subunit-label')
-          .data(topojson.feature(topology, topology.objects.municipalities).features)
-          .enter().append('text')
-          .attr('class', function(d: any) { return 'subunit-label ' + d.properties.mun_code; })
-          .attr('transform', function(d: any) { return 'translate(' + path.centroid(d) + ')'; })
-          .attr('dy', '.35em')
-          .text(function(d: any) { return d.properties.mun_name; });
-      });
-*/
   }
 }
