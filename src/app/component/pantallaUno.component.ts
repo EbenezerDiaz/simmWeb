@@ -30,7 +30,6 @@ export class PantallaUnoComponent implements OnInit {
     const chart: any = d3.select('#mapContainer').append('svg')
     .attr('viewBox', '0 0 ' + targetWidth + ' ' + targetWidth / aspect  )
     .attr('preserveAspectRatio', 'xMidYMid');
-    
     chart.attr('width', targetWidth);
     chart.attr('height', targetWidth / aspect);
     const escalaNueva = (targetWidth * escalaInicial) / width;
@@ -38,18 +37,9 @@ export class PantallaUnoComponent implements OnInit {
     const posiciony = posicionInicialy;
     console.log('escalaNueva: ' + escalaNueva / escalaInicial + '%');
     const projection = d3.geoMercator() .scale(escalaNueva) .center([posicionx, posiciony]);
-    projection.translate([(width*(escalaNueva / escalaInicial)+180)/2, (height*(escalaNueva / escalaInicial)-90)/2 ]);
-
-
-
-    // tslint:disable-next-line: comment-format
-    //const projection = d3.geoMercator() .scale(escalaInicial) .center([-99.272274, 19.5053678]);
-    const svg = chart;
+    projection.translate([(width * (escalaNueva / escalaInicial) + 180) / 2, (height * (escalaNueva / escalaInicial) - 90) / 2 ]);
     const path = d3.geoPath().projection(projection);
-
-
-
-    const g = svg.append('g');
+    const g = chart.append('g');
     g.attr('class', 'map');
 
     d3.json('assets/edoMex.topojson')
