@@ -21,18 +21,36 @@ export class PantallaUnoComponent implements OnInit {
   }
   ngOnInit() {
     const width = 735;
-    const height = 616;
+    const height = 630;
+    const escalaInicial = 17200;
+    const posicionInicialX = -99.272274;
+    const posicionInicialy = 19.5053678;
+    const aspect = width / height;
+    const targetWidth = document.getElementById('mapContainer').offsetWidth;
+    const chart: any = d3.select('#mapContainer').append('svg')
+    .attr('viewBox', '0 0 ' + targetWidth + ' ' + targetWidth / aspect  )
+    .attr('preserveAspectRatio', 'xMidYMid');
+    
+    chart.attr('width', targetWidth);
+    chart.attr('height', targetWidth / aspect);
+    const escalaNueva = (targetWidth * escalaInicial) / width;
+    const posicionx = posicionInicialX;
+    const posiciony = posicionInicialy;
+    console.log('escalaNueva: ' + escalaNueva / escalaInicial + '%');
+    const projection = d3.geoMercator() .scale(escalaNueva) .center([posicionx, posiciony]);
+    projection.translate([(width*(escalaNueva / escalaInicial)+180)/2, (height*(escalaNueva / escalaInicial)-90)/2 ]);
 
-    const projection = d3.geoMercator()
-    .scale(17200)
-    .center([-99.272274, 19.5053678]);
 
-    const svg = d3.select('p').append('svg').attr('width', width).attr('height', height);
+
+    // tslint:disable-next-line: comment-format
+    //const projection = d3.geoMercator() .scale(escalaInicial) .center([-99.272274, 19.5053678]);
+    const svg = chart;
     const path = d3.geoPath().projection(projection);
+
+
+
     const g = svg.append('g');
     g.attr('class', 'map');
-    var tooltip = d3.select('body').append('div')
-            .attr('class', 'hidden tooltip');
 
     d3.json('assets/edoMex.topojson')
       .then(function (topology: any) {
