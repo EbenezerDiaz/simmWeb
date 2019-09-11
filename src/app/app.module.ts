@@ -6,7 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { UsuarioComponent } from './component/usuario.component';
-import { PantallaUnoComponent } from './component/pantallaUno.component';
+import { Pantalla1Component } from './component/pantalla1.component';
+import { Pantalla4Component } from './component/pantalla4.component';
+import { Pantalla5Component } from './component/pantalla5.component';
+import { Pantalla6Component } from './component/pantalla6.component';
+import { Pantalla7Component } from './component/pantalla7.component';
+import { Pantalla8Component } from './component/pantalla8.component';
 import { LoginComponent } from './component/login.component';
 
 import { Interceptor } from './security/app.interceptor';
@@ -36,7 +41,12 @@ import { UsuarioGuard } from './guards/usuario.guard';
   declarations: [
     AppComponent,
     UsuarioComponent,
-    PantallaUnoComponent,
+    Pantalla1Component,
+    Pantalla4Component,
+    Pantalla5Component,
+    Pantalla6Component,
+    Pantalla7Component,
+    Pantalla8Component,
     LoginComponent
   ],
   imports: [

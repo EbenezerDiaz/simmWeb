@@ -12,7 +12,7 @@ import * as topojson from 'topojson';
   templateUrl: '../views/pantalla1.html',
   styleUrls: ['../styles/pantalla1.css']
 })
-export class PantallaUnoComponent implements OnInit {
+export class Pantalla1Component implements OnInit {
   public name = 'd3';
   constructor(
     private token: TokenStorage,
