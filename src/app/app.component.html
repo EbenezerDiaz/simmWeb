@@ -1,19 +1,47 @@
-<div class="container-fluid pl-0 pr-0">
-  <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand ml-auto mx-auto">SISTEMA DE MEDICI&Oacute;N MUNICIPAL</a>
-      <a data-target="#sidebar" data-toggle="collapse" aria-expanded="true" class="">asd</a>
-  </nav>
-  <div class="row d-flex d-md-block flex-nowrap wrapper">
-      <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
-          <div class="list-group border-0 card text-center text-md-left">
-              <a [routerLink]="['/pantalla1']" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-clock-o"></i> <span class="d-none d-md-inline">Principal</span></a>
-              <a [routerLink]="['/pantalla4']" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-clock-o"></i> <span class="d-none d-md-inline">Beneficiarios</span></a>
-              <a [routerLink]="['/pantalla5']" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-th"></i> <span class="d-none d-md-inline">Promotoras Sociales</span></a>
-              <a [routerLink]="['/pantalla6']" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-gear"></i> <span class="d-none d-md-inline">Datos Municipales</span></a>
-              <a [routerLink]="['/pantalla7']" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-calendar"></i> <span class="d-none d-md-inline">Zonas de Atenci&oacute;n Prioritaria</span></a>
-              <a [routerLink]="['/pantalla8']" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-envelope"></i> <span class="d-none d-md-inline">Intervenci&oacute;n Social</span></a>
-          </div>
-      </div>
-      <router-outlet></router-outlet>
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3></h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a [routerLink]="['/pantalla1']" >Principal</a>
+                    <a [routerLink]="['/pantalla4']" >Beneficiarios</a>
+                    <a [routerLink]="['/pantalla5']" >Promotoras Sociales</a>
+                    <a [routerLink]="['/pantalla6']" >Datos Municipales</a>
+                    <a [routerLink]="['/pantalla7']" >Zonas de Atenci&oacute;n Prioritaria</a>
+                    <a [routerLink]="['/pantalla8']" >Intervenci&oacute;n Social</a>
+                
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+                            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                            <a class="navbar-brand ml-auto mx-auto">SISTEMA DE MEDICI&Oacute;N MUNICIPAL</a>
+                        </div>
+                    </nav>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</body>
+
+</html>
